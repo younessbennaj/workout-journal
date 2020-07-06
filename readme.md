@@ -8,3 +8,7 @@ Secondary objectif: Implement a MVC Pattern in JS with backbone.js to structure 
 
 backbone.js => gives you the freedom to design the full experience of your web application.
 
+##Backbone.js
+
+Backbone dependencies => underscore.js
+
