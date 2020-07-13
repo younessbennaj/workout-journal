@@ -62,8 +62,6 @@ let users = new UsersCollection();
 users.fetch().then(value => {
     //When the promise is fullfiled with the loaded data from /user
     //Then, users => a set of UserModel instances.
-    console.log(users.length);
-    console.log(users.get(1));
 
 })
 
@@ -86,8 +84,34 @@ users.fetch().then(value => {
 /*/
 
 users.on('sync', function () {
-    console.log(this);
+
 });
+
+/* VIEW */
+
+var UsersListView = Backbone.View.extend({
+    el: '#users-list',
+    //initialize() is called once per object instance
+    initialize: function () {
+        //binds event listeners to the model for sync and change events
+        this.listenTo(this.model, 'sync change', this.render);
+        this.collection.fetch();
+        this.render();
+    },
+    //render() translates its bound model into display-ready HTML
+    render: function () {
+        this.collection.fetch().then(users => {
+            for (let user of users) {
+                let html = `<li><b>Name:</b> ${user.name}</li>`;
+                this.$el.append(html);
+            }
+        });
+    }
+});
+
+var usersList = new UsersListView({ collection: users });
+
+// Create a new view instance:
 
 
 
