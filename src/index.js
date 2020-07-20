@@ -111,7 +111,11 @@ var UsersListView = Backbone.View.extend({
 
 var usersList = new UsersListView({ collection: users });
 
-// Create a new view instance:
+//React JS
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+);
 
 
 
