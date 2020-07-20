@@ -1,0 +1,28 @@
+{
+  "name": "workout-journal",
+  "version": "1.0.0",
+  "description": "Techno: HTML/CSS/JS/jQuery/BackboneJS/Firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/younessbennaj/workout-journal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/younessbennaj/workout-journal/issues"
+  },
+  "homepage": "https://github.com/younessbennaj/workout-journal#readme",
+  "devDependencies": {
+    "@babel/preset-react": "^7.10.4",
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.10.5",
+    "gulp-babel": "^8.0.0"
+  }
+}
