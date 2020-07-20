@@ -57,6 +57,8 @@ var UsersCollection = Backbone.Collection.extend({
 //We create a new instance of the collection thanks to the return constructor function
 let users = new UsersCollection();
 
+console.log(users);
+
 //fetch() => load data from its REST endpoint
 //return a promise object
 users.fetch().then(value => {
@@ -89,31 +91,31 @@ users.on('sync', function () {
 
 /* VIEW */
 
-var UsersListView = Backbone.View.extend({
-    el: '#users-list',
-    //initialize() is called once per object instance
-    initialize: function () {
-        //binds event listeners to the model for sync and change events
-        this.listenTo(this.model, 'sync change', this.render);
-        this.collection.fetch();
-        this.render();
-    },
-    //render() translates its bound model into display-ready HTML
-    render: function () {
-        this.collection.fetch().then(users => {
-            for (let user of users) {
-                let html = `<li><b>Name:</b> ${user.name}</li>`;
-                this.$el.append(html);
-            }
-        });
-    }
-});
+// var UsersListView = Backbone.View.extend({
+//     el: '#users-list',
+//     //initialize() is called once per object instance
+//     initialize: function () {
+//         //binds event listeners to the model for sync and change events
+//         this.listenTo(this.model, 'sync change', this.render);
+//         this.collection.fetch();
+//         this.render();
+//     },
+//     //render() translates its bound model into display-ready HTML
+//     render: function () {
+//         this.collection.fetch().then(users => {
+//             for (let user of users) {
+//                 let html = `<li><b>Name:</b> ${user.name}</li>`;
+//                 this.$el.append(html);
+//             }
+//         });
+//     }
+// });
 
-var usersList = new UsersListView({ collection: users });
+// var usersList = new UsersListView({ collection: users });
 
 //React JS
 ReactDOM.render(
-    <App />,
+    <App users={users} />,
     document.getElementById('root')
 );
 
