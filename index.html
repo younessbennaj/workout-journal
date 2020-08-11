@@ -20,9 +20,10 @@
     </div>
     <ul id="users-list"></ul>
 </body>
+<!-- "bare import" are not supported yet by the browser using es module, then we use 
+UNPKG to quickly and easily load React and ReactDOM package via URL -->
 <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
-<script type="module" src="dist/App.js"></script>
 <script type="module" src="dist/index.js"></script>
 
 </html>
