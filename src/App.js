@@ -1,15 +1,4 @@
-let Hello = React.createElement('h1', null, 'Hello World !');
-
-// class ListItem {
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     render() {
-//         const listItem = React.createElement('li', null, this.props.userName);
-//         return listItem;
-//     }
-// }
+import { ListItem } from './ListItem.js';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,29 +8,11 @@ class App extends React.Component {
         }
     }
 
-    // return (
-    //     <React.Fragment>
-    //         {
-    //             props.users.fetch().then(users => {
-    //             // for (let user of users) {
-    //             //     let html = `<li><b>Name:</b> ${user.name}</li>`;
-    //             //     this.$el.append(html);
-    //             // }
-    //             })
-    //         }
-    //     </React.Fragment>
-    // )
-
     componentDidMount() {
         this.props.users.fetch().then(users => {
-            console.log(users);
             this.setState({
                 users
             });
-            // for (let user of users) {
-            //     let html = `<li><b>Name:</b> ${user.name}</li>`;
-            //     this.$el.append(html);
-            // }
         })
     }
 
@@ -50,7 +21,7 @@ class App extends React.Component {
             <React.Fragment>
                 {
                     this.state.users.map(user => {
-                        return <li>{user.name}</li>
+                        return < ListItem user={user} />
                     })
                 }
             </React.Fragment>
@@ -60,4 +31,4 @@ class App extends React.Component {
     }
 }
 
-console.log('test');
+export { App };

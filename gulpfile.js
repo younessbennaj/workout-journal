@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 
 function js(cb) {
-    console.log('test');
     gulp.src('src/*.js')
         .pipe(babel({
             presets: ["@babel/preset-react"]
