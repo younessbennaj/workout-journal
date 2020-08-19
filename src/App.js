@@ -47,6 +47,20 @@ const setsModel = [
     { reps: 12, weight: 70 }
 ]
 
+const exerciceModel = {
+    name: 'Bench Press',
+    description: '3 sets, 8-12 reps',
+    sets: setsModel,
+}
+
+const exercicesModel = [
+    exerciceModel,
+    exerciceModel,
+    exerciceModel,
+    exerciceModel,
+    exerciceModel
+]
+
 const SetDetails = ({ weight, reps }) => {
     return (
         <StyledSetDetails>
@@ -62,7 +76,33 @@ const SetDetails = ({ weight, reps }) => {
     )
 }
 
-const Table = () => {
+const SetRow = ({ exercice: { name, sets, description } }) => {
+    return (
+        <tr>
+            <StyledExerciceDetails>
+                <p>{name}</p>
+                <p>{description}</p>
+            </StyledExerciceDetails>
+            {sets.map(set => {
+                return <SetDetails weight={set.weight} reps={set.reps} />
+            })}
+        </tr>
+    )
+}
+
+const StyledExerciceDetails = styled.td`
+    padding: 0.5em;
+
+    p:first-child {
+        font-weight: bold;
+    }
+
+    p:last-child {
+        font-size: small;
+    }
+`
+
+const Table = ({ exercice }) => {
     return (
         <StyledTable>
             <thead>
@@ -74,12 +114,9 @@ const Table = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Exercice 1</td>
-                    {setsModel.map(set => {
-                        return <SetDetails weight={set.weight} reps={set.reps} />
-                    })}
-                </tr>
+                {exercicesModel.map(exercice => {
+                    return <SetRow exercice={exercice} />;
+                })}
             </tbody>
         </StyledTable>
     )
@@ -122,7 +159,7 @@ class App extends React.Component {
 
         return (
             <StyledContainer>
-                <Table />
+                <Table exercice={exerciceModel} />
                 {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
             </StyledContainer>
         );
