@@ -8,6 +8,8 @@ const StyledLabel = styled.label`
 `
 
 const StyledInput = styled.input`
+    font-size: medium;
+    padding-left: 1em;
     display: block;
     height: 3em;
     width: 100%;
@@ -18,7 +20,7 @@ const StyledInputGroup = styled.div`
     margin: 1em 0;
 `
 
-const Input = ({ label, update }) => {
+const Input = ({ type, label, update }) => {
 
     function handleChange(e) {
         update(e.target.value)
@@ -27,7 +29,7 @@ const Input = ({ label, update }) => {
     return (
         <StyledInputGroup>
             <StyledLabel>{label}</StyledLabel>
-            <StyledInput onChange={handleChange} type="text" />
+            <StyledInput onChange={handleChange} type={type} />
         </StyledInputGroup>
     )
 }
@@ -40,16 +42,18 @@ const StyledSubmitButton = styled.input`
     border-radius: 2px;
     margin: 1em 0;
     text-transform: capitalize;
+    cursor: pointer;
 `;
 
-const Form = ({ updateReps, updateWeight }) => {
+const Form = ({ updateReps, updateWeight, postData }) => {
     function handleSubmit(e) {
         e.preventDefault();
+        postData();
     }
     return (
         <form onSubmit={handleSubmit}>
-            <Input update={updateReps} label="repetition" />
-            <Input update={updateWeight} label="weight" />
+            <Input update={updateReps} type="number" label="repetition" />
+            <Input update={updateWeight} type="number" label="weight" />
             <StyledSubmitButton type="submit" value="add" />
         </form>
     )
@@ -70,6 +74,7 @@ class App extends React.Component {
         }
         this.updateReps = this.updateReps.bind(this);
         this.updateWeight = this.updateWeight.bind(this);
+        this.postData = this.postData.bind(this);
     }
 
     updateReps(reps) {
@@ -82,11 +87,16 @@ class App extends React.Component {
         this.setState({ weight });
     }
 
+    postData() {
+        //Here some code to send data to the server
+        console.log(this.state.reps, this.state.weight);
+    }
+
     render() {
 
         return (
             <StyledContainer>
-                <Form updateReps={this.updateReps} updateWeight={this.updateWeight} />
+                <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} />
             </StyledContainer>
         );
     }
