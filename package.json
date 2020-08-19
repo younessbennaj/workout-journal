@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.10.5",
-    "gulp-babel": "^8.0.0"
+    "gulp-babel": "^8.0.0",
+    "react-table": "^7.5.0"
   }
 }
