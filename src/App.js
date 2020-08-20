@@ -2,60 +2,69 @@ import React, { useState, useEffect } from 'https://cdn.skypack.dev/react@^16.13
 import styled from 'https://cdn.skypack.dev/styled-components@^5.1.1';
 
 import { Form } from './Form.js';
+import { Table } from './Table.js';
+
+//Layout Components 
+import {
+    StyledContainer,
+    StyledContentContainer,
+    StyledNavbar,
+    StyledSidebar
+} from './layout/index.js';
 
 // STYLE UTILS
 import { sm } from './style/mixins.js'
 
-const StyledTable = styled.table`
-    width: 100%;
-    border: 1px solid darkgrey;
-    border-collapse: collapse;
+// const StyledTable = styled.table`
+//     width: 100%;
+//     border: 1px solid darkgrey;
+//     border-collapse: collapse;
 
-    th, td {
-        border: 1px solid darkgrey;
-    }
-`;
+//     th, td {
+//         border: 1px solid darkgrey;
+//     }
+// `;
 
-const StyledSetDetails = styled.td`
-    width: 25%;
+// const StyledSetDetails = styled.td`
+//     width: 25%;
 
-    tr {
-        display: block;
-        width: 100%;
-        padding: 0.5em;
-        box-sizing: border-box;
-    }
+//     tr {
+//         display: block;
+//         width: 100%;
+//         padding: 0.5em;
+//         box-sizing: border-box;
+//     }
 
-    td {
-        padding: 0;
-        display: inline-block;
-        width: 50%;
-        border: none;
+//     td {
+//         padding: 0;
+//         display: inline-block;
+//         width: 50%;
+//         border: none;
 
-        /* Small screen */
-        ${sm(`
-            text-align: center;
-            display: block;
-            width: 100%;
-            padding: 0.3em 0;
-            `
-    )};
+//         /* Small screen */
+//         ${sm(`
+//             text-align: center;
+//             display: block;
+//             width: 100%;
+//             padding: 0.3em 0;
+//             `
+//     )};
 
-    }
+//     }
 
-    td:first-child {
-        color: #585858;
-        font-weight: bold;
-        text-decoration: underline;
+//     td:first-child {
+//         color: #585858;
+//         font-weight: bold;
+//         text-decoration: underline;
 
-        /* Small screen */
-        ${sm(`font-size: small;`)};
-    }
+//         /* Small screen */
+//         ${sm(`font-size: small;`)};
+//     }
 
-    td:last-child {
-        text-align: center;
-    }
-`
+//     td:last-child {
+//         text-align: center;
+//     }
+// `
 
 const setsModel = [
     { reps: 8, weight: 90 },
@@ -77,111 +86,66 @@ const exercicesModel = [
     exerciceModel
 ]
 
-const SetDetails = ({ weight, reps }) => {
-    return (
-        <StyledSetDetails>
-            <tr>
-                <td>weight:</td>
-                <td>{weight}</td>
-            </tr>
-            <tr>
-                <td>reps:</td>
-                <td>{reps}</td>
-            </tr>
-        </StyledSetDetails>
-    )
-}
+// const SetDetails = ({ weight, reps }) => {
+//     return (
+//         <StyledSetDetails>
+//             <tr>
+//                 <td>weight:</td>
+//                 <td>{weight}</td>
+//             </tr>
+//             <tr>
+//                 <td>reps:</td>
+//                 <td>{reps}</td>
+//             </tr>
+//         </StyledSetDetails>
+//     )
+// }
 
-const SetRow = ({ exercice: { name, sets, description } }) => {
-    return (
-        <tr>
-            <StyledExerciceDetails>
-                <p>{name}</p>
-                <p>{description}</p>
-            </StyledExerciceDetails>
-            {sets.map(set => {
-                return <SetDetails weight={set.weight} reps={set.reps} />
-            })}
-        </tr>
-    )
-}
+// const SetRow = ({ exercice: { name, sets, description } }) => {
+//     return (
+//         <tr>
+//             <StyledExerciceDetails>
+//                 <p>{name}</p>
+//                 <p>{description}</p>
+//             </StyledExerciceDetails>
+//             {sets.map(set => {
+//                 return <SetDetails weight={set.weight} reps={set.reps} />
+//             })}
+//         </tr>
+//     )
+// }
 
-const StyledExerciceDetails = styled.td`
-    padding: 0.5em;
+// const StyledExerciceDetails = styled.td`
+//     padding: 0.5em;
 
-    p:first-child {
-        font-weight: bold;
-    }
+//     p:first-child {
+//         font-weight: bold;
+//     }
 
-    p:last-child {
-        font-size: small;
-    }
-`
+//     p:last-child {
+//         font-size: small;
+//     }
+// `
 
-const Table = ({ exercice }) => {
-    return (
-        <StyledTable>
-            <thead>
-                <tr>
-                    <th>Exercice</th>
-                    <th>Set 1</th>
-                    <th>Set 2</th>
-                    <th>Set 3</th>
-                </tr>
-            </thead>
-            <tbody>
-                {exercicesModel.map(exercice => {
-                    return <SetRow exercice={exercice} />;
-                })}
-            </tbody>
-        </StyledTable>
-    )
-}
-
-const StyledContainer = styled.main`
-    height: 93vh;
-`
-
-const StyledSidebar = styled.div`
-    box-sizing: border-box;
-    width: 30%;
-    height: 100%;
-    background-color: aliceblue;
-    display: inline-block;
-    padding: 1em;
-    overflow: auto;
-
-    /* Small screen */
-    ${sm(`
-        display: block;
-        width: 100%;
-        height: max-content;
-        `
-    )};
-`;
-
-const StyledNavbar = styled.header`
-    height: 7vh;
-    width: 100vw;
-    background-color: lightgrey;
-`;
-
-const StyledContentContainer = styled.section`
-    width: 70%;
-    height: 100%;
-    padding: 1em;
-    box-sizing: border-box;
-    background-color: beige;
-    display: inline-block;
-
-    /* Small screen */
-    ${sm(`
-        display: block;
-        width: 100%;
-        height: max-content;
-        `
-    )};
-`;
+// const Table = ({ exercice }) => {
+//     return (
+//         <StyledTable>
+//             <thead>
+//                 <tr>
+//                     <th>Exercice</th>
+//                     <th>Set 1</th>
+//                     <th>Set 2</th>
+//                     <th>Set 3</th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 {exercicesModel.map(exercice => {
+//                     return <SetRow exercice={exercice} />;
+//                 })}
+//             </tbody>
+//         </StyledTable>
+//     )
+// }
 
 class App extends React.Component {
 
@@ -221,7 +185,7 @@ class App extends React.Component {
                         <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} />
                     </StyledSidebar>
                     <StyledContentContainer>
-                        <Table exercice={exerciceModel} />
+                        <Table exercices={exercicesModel} />
                     </ StyledContentContainer>
                     {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
                 </StyledContainer>
