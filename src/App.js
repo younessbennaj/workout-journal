@@ -89,11 +89,12 @@ class App extends React.Component {
             weight: 0,
             currentSet: 1
         }
+        //Bind the keyword this to the component instance object inside the event handlers 
         this.updateReps = this.updateReps.bind(this);
         this.updateWeight = this.updateWeight.bind(this);
-        this.postData = this.postData.bind(this);
         this.updateExerciseId = this.updateExerciseId.bind(this);
         this.updateSet = this.updateSet.bind(this);
+        this.updateExercises = this.updateExercises.bind(this);
     }
 
     findExercice(id) {
@@ -119,9 +120,26 @@ class App extends React.Component {
         this.setState({ weight });
     }
 
-    postData() {
-        //Here some code to send data to the server
-        console.log(this.state.reps, this.state.weight);
+    clearAll() {
+        this.setState({
+            exerciseId: '',
+            weight: 0,
+            reps: 0,
+            currentSet: 1
+        });
+    }
+
+    updateExercises() {
+        console.log(this.findExercice(this.state.exerciseId));
+        //post a set => Post on api/set
+        console.log({
+            id: this.state.exerciseId,
+            set: this.state.currentSet,
+            reps: this.state.reps,
+            weight: this.state.weight
+        });
+        //reset local state 
+        this.clearAll();
     }
 
     render() {
@@ -136,8 +154,8 @@ class App extends React.Component {
                             updateSet={this.updateSet}
                             updateReps={this.updateReps}
                             updateWeight={this.updateWeight}
-                            postData={this.postData}
-                            exercises={exercisesModel}
+                            updateExercises={this.updateExercises}
+                            exercises={this.state.exercises}
                         />
                     </StyledSidebar>
                     <StyledContentContainer>

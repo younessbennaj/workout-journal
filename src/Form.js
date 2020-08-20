@@ -9,10 +9,10 @@ import { SelectSet } from './SelectSet.js';
 //Import input style componenets 
 import { StyledSubmitButton, StyledSelect, StyledInputGroup, StyledLabel } from './UI/Input.js';
 
-const Form = ({ updateReps, updateWeight, updateSet, updateExercise, postData, exercises }) => {
+const Form = ({ updateReps, updateWeight, updateSet, updateExercise, updateExercises, exercises }) => {
     function handleSubmit(e) {
         e.preventDefault();
-        postData();
+        updateExercises();
     }
 
     return (
