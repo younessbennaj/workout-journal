@@ -12,34 +12,44 @@ const StyledSubmitButton = styled.input`
     text-transform: capitalize;
     cursor: pointer;
 `;
+const SelectExercises = ({ exercises, update }) => {
 
-const Form = ({ updateReps, updateWeight, postData }) => {
+    function handleChange(e) {
+        update(e.target.value);
+    }
+
+    return (
+        <select onChange={handleChange} name="exercice" id="exercice">
+            {exercises.map(exercise => {
+                return <option value={exercise.id}>{exercise.name}</option>
+            })}
+        </select>
+    )
+}
+
+const SelectSet = ({ update }) => {
+    function handleChange(e) {
+        update(e.target.value);
+    }
+
+    return (
+        <select onChange={handleChange} name="sets" id="sets">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    )
+}
+const Form = ({ updateReps, updateWeight, updateSet, updateExercise, postData, exercises }) => {
     function handleSubmit(e) {
         e.preventDefault();
         postData();
     }
 
-    function handleChange() {
-
-    }
-
     return (
         <form onSubmit={handleSubmit}>
-            <select name="exercice" id="">
-                <option value="bench">bench</option>
-                <option value="pull-ups">pull-ups</option>
-                <option value="squats">squats</option>
-                <option value="side-raise">side raise</option>
-                <option value="dumbell-press">dumbell press</option>
-                <option value="triceps-pushdown">triceps pushdown</option>
-                <option value="dumbbell-curl ">dumbbell curl </option>
-                <option value="knee-raise">Hanging knee raise</option>
-            </select>
-            <select name="exercice" id="">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
+            <SelectExercises exercises={exercises} update={updateExercise} />
+            <SelectSet update={updateSet} />
             <Input update={updateReps} type="number" label="repetitions" />
             <Input update={updateWeight} type="number" label="weight" />
             <StyledSubmitButton type="submit" value="add" />
