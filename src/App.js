@@ -83,6 +83,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            exercises: exercisesModel,
             exerciseId: '',
             reps: 0,
             weight: 0,
