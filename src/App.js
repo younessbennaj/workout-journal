@@ -15,56 +15,11 @@ import {
 // STYLE UTILS
 import { sm } from './style/mixins.js'
 
-// const StyledTable = styled.table`
-//     width: 100%;
-//     border: 1px solid darkgrey;
-//     border-collapse: collapse;
+// DATA MOCK UPS
 
-//     th, td {
-//         border: 1px solid darkgrey;
-//     }
-// `;
-
-// const StyledSetDetails = styled.td`
-//     width: 25%;
-
-//     tr {
-//         display: block;
-//         width: 100%;
-//         padding: 0.5em;
-//         box-sizing: border-box;
-//     }
-
-//     td {
-//         padding: 0;
-//         display: inline-block;
-//         width: 50%;
-//         border: none;
-
-//         /* Small screen */
-//         ${sm(`
-//             text-align: center;
-//             display: block;
-//             width: 100%;
-//             padding: 0.3em 0;
-//             `
-//     )};
-
-//     }
-
-//     td:first-child {
-//         color: #585858;
-//         font-weight: bold;
-//         text-decoration: underline;
-
-//         /* Small screen */
-//         ${sm(`font-size: small;`)};
-//     }
-
-//     td:last-child {
-//         text-align: center;
-//     }
-// `
+function generateFakeId() {
+    return (1000000 + Math.floor(Math.random() * (10000000 - 1000000))).toString();
+}
 
 const setsModel = [
     { reps: 8, weight: 90 },
@@ -72,92 +27,87 @@ const setsModel = [
     { reps: 12, weight: 70 }
 ]
 
-const exerciceModel = {
-    name: 'Bench Press',
-    description: '3 sets, 8-12 reps',
-    sets: setsModel,
-}
-
-const exercicesModel = [
-    exerciceModel,
-    exerciceModel,
-    exerciceModel,
-    exerciceModel,
-    exerciceModel
+const exercisesModel = [
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'bench'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'pull-ups'
+    },
+    {
+        id: generateFakeId(),
+        sets: setsModel,
+        description: '3 sets, 8-12 reps',
+        name: 'squats'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'side raise'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'dumbell press'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'triceps pushdown'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'dumbbell curl'
+    },
+    {
+        id: generateFakeId(),
+        description: '3 sets, 8-12 reps',
+        sets: setsModel,
+        name: 'hanging knee raise'
+    },
 ]
-
-// const SetDetails = ({ weight, reps }) => {
-//     return (
-//         <StyledSetDetails>
-//             <tr>
-//                 <td>weight:</td>
-//                 <td>{weight}</td>
-//             </tr>
-//             <tr>
-//                 <td>reps:</td>
-//                 <td>{reps}</td>
-//             </tr>
-//         </StyledSetDetails>
-//     )
-// }
-
-// const SetRow = ({ exercice: { name, sets, description } }) => {
-//     return (
-//         <tr>
-//             <StyledExerciceDetails>
-//                 <p>{name}</p>
-//                 <p>{description}</p>
-//             </StyledExerciceDetails>
-//             {sets.map(set => {
-//                 return <SetDetails weight={set.weight} reps={set.reps} />
-//             })}
-//         </tr>
-//     )
-// }
-
-// const StyledExerciceDetails = styled.td`
-//     padding: 0.5em;
-
-//     p:first-child {
-//         font-weight: bold;
-//     }
-
-//     p:last-child {
-//         font-size: small;
-//     }
-// `
-
-// const Table = ({ exercice }) => {
-//     return (
-//         <StyledTable>
-//             <thead>
-//                 <tr>
-//                     <th>Exercice</th>
-//                     <th>Set 1</th>
-//                     <th>Set 2</th>
-//                     <th>Set 3</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 {exercicesModel.map(exercice => {
-//                     return <SetRow exercice={exercice} />;
-//                 })}
-//             </tbody>
-//         </StyledTable>
-//     )
-// }
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            exercises: exercisesModel,
+            exerciseId: '',
             reps: 0,
-            weight: 0
+            weight: 0,
+            currentSet: 1
         }
+        //Bind the keyword this to the component instance object inside the event handlers 
         this.updateReps = this.updateReps.bind(this);
         this.updateWeight = this.updateWeight.bind(this);
-        this.postData = this.postData.bind(this);
+        this.updateExerciseId = this.updateExerciseId.bind(this);
+        this.updateSet = this.updateSet.bind(this);
+        this.updateExercises = this.updateExercises.bind(this);
+    }
+
+    findExercice(id) {
+        //Given an id, find the corresponding exercise in the data model
+        return exercisesModel.find(exercise => exercise.id === id);
+    }
+
+    updateExerciseId(id) {
+        this.setState({ exerciseId: id });
+    }
+
+    updateSet(currentSet) {
+        this.setState({ currentSet });
     }
 
     updateReps(reps) {
@@ -170,9 +120,26 @@ class App extends React.Component {
         this.setState({ weight });
     }
 
-    postData() {
-        //Here some code to send data to the server
-        console.log(this.state.reps, this.state.weight);
+    clearAll() {
+        this.setState({
+            exerciseId: '',
+            weight: 0,
+            reps: 0,
+            currentSet: 1
+        });
+    }
+
+    updateExercises() {
+        console.log(this.findExercice(this.state.exerciseId));
+        //post a set => Post on api/set
+        console.log({
+            id: this.state.exerciseId,
+            set: this.state.currentSet,
+            reps: this.state.reps,
+            weight: this.state.weight
+        });
+        //reset local state 
+        this.clearAll();
     }
 
     render() {
@@ -182,12 +149,18 @@ class App extends React.Component {
                 <StyledNavbar />
                 <StyledContainer>
                     <StyledSidebar>
-                        <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} />
+                        <Form
+                            updateExercise={this.updateExerciseId}
+                            updateSet={this.updateSet}
+                            updateReps={this.updateReps}
+                            updateWeight={this.updateWeight}
+                            updateExercises={this.updateExercises}
+                            exercises={this.state.exercises}
+                        />
                     </StyledSidebar>
                     <StyledContentContainer>
-                        <Table exercices={exercicesModel} />
+                        <Table exercises={exercisesModel} />
                     </ StyledContentContainer>
-                    {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
                 </StyledContainer>
             </>
         );

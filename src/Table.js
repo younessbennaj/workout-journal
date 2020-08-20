@@ -57,7 +57,7 @@ const StyledSetDetails = styled.td`
     }
 `
 
-const StyledExerciceDetails = styled.td`
+const StyledExerciseDetails = styled.td`
     padding: 0.5em;
 
     p:first-child {
@@ -86,15 +86,15 @@ const SetDetails = ({ weight, reps }) => {
     )
 }
 
-//Row to represent an exercice in the table
+//Row to represent an exercise in the table
 
-const ExerciceRow = ({ exercice: { name, sets, description } }) => {
+const ExerciseRow = ({ exercise: { name, sets, description } }) => {
     return (
         <tr>
-            <StyledExerciceDetails>
+            <StyledExerciseDetails>
                 <p>{name}</p>
                 <p>{description}</p>
-            </StyledExerciceDetails>
+            </StyledExerciseDetails>
             {sets.map(set => {
                 return <SetDetails weight={set.weight} reps={set.reps} />
             })}
@@ -102,22 +102,22 @@ const ExerciceRow = ({ exercice: { name, sets, description } }) => {
     )
 }
 
-//Table that display our records by exercice (by sets)
+//Table that display our records by exercise (by sets)
 
-const Table = ({ exercices }) => {
+const Table = ({ exercises }) => {
     return (
         <StyledTable>
             <thead>
                 <tr>
-                    <th>Exercice</th>
+                    <th>exercise</th>
                     <th>Set 1</th>
                     <th>Set 2</th>
                     <th>Set 3</th>
                 </tr>
             </thead>
             <tbody>
-                {exercices.map(exercice => {
-                    return <ExerciceRow exercice={exercice} />;
+                {exercises.map(exercise => {
+                    return <ExerciseRow exercise={exercise} />;
                 })}
             </tbody>
         </StyledTable>
