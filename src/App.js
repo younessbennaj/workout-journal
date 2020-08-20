@@ -72,80 +72,19 @@ const setsModel = [
     { reps: 12, weight: 70 }
 ]
 
-const exerciceModel = {
+const exerciseModel = {
     name: 'Bench Press',
     description: '3 sets, 8-12 reps',
     sets: setsModel,
 }
 
-const exercicesModel = [
-    exerciceModel,
-    exerciceModel,
-    exerciceModel,
-    exerciceModel,
-    exerciceModel
+const exercisesModel = [
+    exerciseModel,
+    exerciseModel,
+    exerciseModel,
+    exerciseModel,
+    exerciseModel
 ]
-
-// const SetDetails = ({ weight, reps }) => {
-//     return (
-//         <StyledSetDetails>
-//             <tr>
-//                 <td>weight:</td>
-//                 <td>{weight}</td>
-//             </tr>
-//             <tr>
-//                 <td>reps:</td>
-//                 <td>{reps}</td>
-//             </tr>
-//         </StyledSetDetails>
-//     )
-// }
-
-// const SetRow = ({ exercice: { name, sets, description } }) => {
-//     return (
-//         <tr>
-//             <StyledExerciceDetails>
-//                 <p>{name}</p>
-//                 <p>{description}</p>
-//             </StyledExerciceDetails>
-//             {sets.map(set => {
-//                 return <SetDetails weight={set.weight} reps={set.reps} />
-//             })}
-//         </tr>
-//     )
-// }
-
-// const StyledExerciceDetails = styled.td`
-//     padding: 0.5em;
-
-//     p:first-child {
-//         font-weight: bold;
-//     }
-
-//     p:last-child {
-//         font-size: small;
-//     }
-// `
-
-// const Table = ({ exercice }) => {
-//     return (
-//         <StyledTable>
-//             <thead>
-//                 <tr>
-//                     <th>Exercice</th>
-//                     <th>Set 1</th>
-//                     <th>Set 2</th>
-//                     <th>Set 3</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 {exercicesModel.map(exercice => {
-//                     return <SetRow exercice={exercice} />;
-//                 })}
-//             </tbody>
-//         </StyledTable>
-//     )
-// }
 
 class App extends React.Component {
 
@@ -185,7 +124,7 @@ class App extends React.Component {
                         <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} />
                     </StyledSidebar>
                     <StyledContentContainer>
-                        <Table exercices={exercicesModel} />
+                        <Table exercises={exercisesModel} />
                     </ StyledContentContainer>
                     {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
                 </StyledContainer>
