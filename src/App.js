@@ -122,10 +122,29 @@ const Table = ({ exercice }) => {
     )
 }
 
-const StyledContainer = styled.div`
-    height: 100%;
-    padding: 1em;
+const StyledContainer = styled.main`
+    height: 93vh;
 `
+
+const StyledSidebar = styled.div`
+    width: 30%;
+    height: 100%;
+    background-color: aliceblue;
+    display: inline-block;
+`;
+
+const StyledNavbar = styled.header`
+    height: 7vh;
+    width: 100vw;
+    background-color: lightgrey;
+`;
+
+const StyledContentContainer = styled.section`
+    width: 70%;
+    height: 100%;
+    background-color: beige;
+    display: inline-block;
+`;
 
 class App extends React.Component {
 
@@ -158,10 +177,17 @@ class App extends React.Component {
     render() {
 
         return (
-            <StyledContainer>
-                <Table exercice={exerciceModel} />
-                {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
-            </StyledContainer>
+            <>
+                <StyledNavbar />
+                <StyledContainer>
+                    <StyledSidebar />
+                    <StyledContentContainer>
+                        <Table exercice={exerciceModel} />
+                    </ StyledContentContainer>
+                    {/* <Table exercice={exerciceModel} /> */}
+                    {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
+                </StyledContainer>
+            </>
         );
     }
 }
