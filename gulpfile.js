@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 
 function js(cb) {
-    gulp.src('src/*.js')
+    gulp.src('src/**/*.js')
         .pipe(babel({
             presets: ["@babel/preset-react"]
         }))
@@ -11,7 +11,7 @@ function js(cb) {
 }
 
 function watch(cb) {
-    gulp.watch('src/*.js', { ignoreInitial: false, events: ['all'] }, js);
+    gulp.watch('src/**/*.js', { ignoreInitial: false, events: ['all'] }, js);
     cb();
 }
 

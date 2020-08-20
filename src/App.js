@@ -3,6 +3,9 @@ import styled from 'https://cdn.skypack.dev/styled-components@^5.1.1';
 
 import { Form } from './Form.js';
 
+// STYLE UTILS
+import { sm } from './style/mixins.js'
+
 const StyledTable = styled.table`
     width: 100%;
     border: 1px solid darkgrey;
@@ -28,12 +31,25 @@ const StyledSetDetails = styled.td`
         display: inline-block;
         width: 50%;
         border: none;
+
+        /* Small screen */
+        ${sm(`
+            text-align: center;
+            display: block;
+            width: 100%;
+            padding: 0.3em 0;
+            `
+    )};
+
     }
 
     td:first-child {
         color: #585858;
         font-weight: bold;
         text-decoration: underline;
+
+        /* Small screen */
+        ${sm(`font-size: small;`)};
     }
 
     td:last-child {
@@ -127,10 +143,21 @@ const StyledContainer = styled.main`
 `
 
 const StyledSidebar = styled.div`
+    box-sizing: border-box;
     width: 30%;
     height: 100%;
     background-color: aliceblue;
     display: inline-block;
+    padding: 1em;
+    overflow: auto;
+
+    /* Small screen */
+    ${sm(`
+        display: block;
+        width: 100%;
+        height: max-content;
+        `
+    )};
 `;
 
 const StyledNavbar = styled.header`
@@ -142,8 +169,18 @@ const StyledNavbar = styled.header`
 const StyledContentContainer = styled.section`
     width: 70%;
     height: 100%;
+    padding: 1em;
+    box-sizing: border-box;
     background-color: beige;
     display: inline-block;
+
+    /* Small screen */
+    ${sm(`
+        display: block;
+        width: 100%;
+        height: max-content;
+        `
+    )};
 `;
 
 class App extends React.Component {
@@ -180,11 +217,12 @@ class App extends React.Component {
             <>
                 <StyledNavbar />
                 <StyledContainer>
-                    <StyledSidebar />
+                    <StyledSidebar>
+                        <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} />
+                    </StyledSidebar>
                     <StyledContentContainer>
                         <Table exercice={exerciceModel} />
                     </ StyledContentContainer>
-                    {/* <Table exercice={exerciceModel} /> */}
                     {/* <Form updateReps={this.updateReps} updateWeight={this.updateWeight} postData={this.postData} /> */}
                 </StyledContainer>
             </>
