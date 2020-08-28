@@ -9,7 +9,7 @@ import { SelectSet } from './SelectSet.js';
 //Import input style componenets 
 import { StyledSubmitButton, StyledSelect, StyledInputGroup, StyledLabel } from './UI/Input.js';
 
-const Form = ({ updateReps, updateWeight, updateSet, updateExercise, updateExercises, exercises }) => {
+const Form = ({ children, updateExercises }) => {
     function handleSubmit(e) {
         e.preventDefault();
         updateExercises();
@@ -17,11 +17,7 @@ const Form = ({ updateReps, updateWeight, updateSet, updateExercise, updateExerc
 
     return (
         <form onSubmit={handleSubmit}>
-            <SelectExercises exercises={exercises} update={updateExercise} />
-            <SelectSet update={updateSet} />
-            <Input update={updateReps} type="number" label="repetitions" />
-            <Input update={updateWeight} type="number" label="weight" />
-            <StyledSubmitButton type="submit" value="add" />
+            {children}
         </form>
     )
 }

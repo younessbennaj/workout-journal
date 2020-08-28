@@ -96,7 +96,7 @@ const ExerciseRow = ({ exercise: { name, sets, description } }) => {
                 <p>{description}</p>
             </StyledExerciseDetails>
             {sets.map(set => {
-                return <SetDetails weight={set.weight} reps={set.reps} />
+                return <SetDetails key={set.weight} weight={set.weight} reps={set.reps} />
             })}
         </tr>
     )
@@ -117,7 +117,7 @@ const Table = ({ exercises }) => {
             </thead>
             <tbody>
                 {exercises.map(exercise => {
-                    return <ExerciseRow exercise={exercise} />;
+                    return <ExerciseRow key={exercise.id} exercise={exercise} />;
                 })}
             </tbody>
         </StyledTable>
