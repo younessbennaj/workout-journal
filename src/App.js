@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 
+//Components
 import { Form } from './Form.js';
 import { Table } from './Table.js';
+import { Input } from './Input.js';
+import { SelectExercises } from './SelectExercise.js';
+import { SelectSet } from './SelectSet.js';
 
 //Layout Components 
 import {
@@ -11,6 +15,9 @@ import {
     StyledNavbar,
     StyledSidebar
 } from './layout/index.js';
+
+//Import input style componenets 
+import { StyledSubmitButton } from './UI/Input.js';
 
 // STYLE UTILS
 import { sm } from './style/mixins.js'
@@ -78,6 +85,26 @@ const exercisesModel = [
     },
 ]
 
+//Validation Form Message Component 
+
+const StyledValidationMessage = styled.div`
+    border: 1px solid green;
+    background-color: lightgreen;
+    padding: 0.5em;
+    border-radius: 3px;
+    margin: 0.5em 0;
+`
+
+const ValidationMessage = () => {
+    return (
+        <StyledValidationMessage>
+            <p>Success</p>
+        </StyledValidationMessage>
+    )
+}
+
+//Parent App Component
+
 class App extends React.Component {
 
     constructor(props) {
@@ -87,7 +114,9 @@ class App extends React.Component {
             exerciseId: '',
             reps: 0,
             weight: 0,
-            currentSet: 1
+            currentSet: 1,
+            //mock success on POST data to API
+            isAdded: false,
         }
         //Bind the keyword this to the component instance object inside the event handlers 
         this.updateReps = this.updateReps.bind(this);
@@ -138,6 +167,7 @@ class App extends React.Component {
             reps: this.state.reps,
             weight: this.state.weight
         });
+        this.setState({ isAdded: true });
         //reset local state 
         this.clearAll();
     }
@@ -149,14 +179,16 @@ class App extends React.Component {
                 <StyledNavbar />
                 <StyledContainer>
                     <StyledSidebar>
-                        <Form
-                            updateExercise={this.updateExerciseId}
-                            updateSet={this.updateSet}
-                            updateReps={this.updateReps}
-                            updateWeight={this.updateWeight}
-                            updateExercises={this.updateExercises}
-                            exercises={this.state.exercises}
-                        />
+                        <Form updateExercises={this.updateExercises}>
+                            <SelectExercises exercises={this.state.exercises} update={this.updateExerciseId} />
+                            <SelectSet update={this.updateSet} />
+                            <Input update={this.updateReps} type="number" label="repetitions" />
+                            <Input update={this.updateWeight} type="number" label="weight" />
+                            <StyledSubmitButton type="submit" value="add" />
+                            {this.state.isAdded && (
+                                <ValidationMessage />
+                            )}
+                        </Form>
                     </StyledSidebar>
                     <StyledContentContainer>
                         <Table exercises={exercisesModel} />

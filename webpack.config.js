@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: "development",
+    watch: true,
     //Entry point where webpack start to build dependencies graph 
     entry: './src/index.js',
     //Where webpack put the compiled code 
