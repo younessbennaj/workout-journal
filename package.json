@@ -19,7 +19,9 @@
   "homepage": "https://github.com/younessbennaj/workout-journal#readme",
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",
-    "gulp": "^4.0.2"
+    "babel-loader": "^8.1.0",
+    "gulp": "^4.0.2",
+    "webpack": "^4.44.1"
   },
   "dependencies": {
     "@babel/core": "^7.10.5",
