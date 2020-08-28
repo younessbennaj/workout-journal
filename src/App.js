@@ -85,6 +85,26 @@ const exercisesModel = [
     },
 ]
 
+//Validation Form Message Component 
+
+const StyledValidationMessage = styled.div`
+    border: 1px solid green;
+    background-color: lightgreen;
+    padding: 0.5em;
+    border-radius: 3px;
+    margin: 0.5em 0;
+`
+
+const ValidationMessage = () => {
+    return (
+        <StyledValidationMessage>
+            <p>Success</p>
+        </StyledValidationMessage>
+    )
+}
+
+//Parent App Component
+
 class App extends React.Component {
 
     constructor(props) {
@@ -94,7 +114,9 @@ class App extends React.Component {
             exerciseId: '',
             reps: 0,
             weight: 0,
-            currentSet: 1
+            currentSet: 1,
+            //mock success on POST data to API
+            isAdded: false,
         }
         //Bind the keyword this to the component instance object inside the event handlers 
         this.updateReps = this.updateReps.bind(this);
@@ -145,6 +167,7 @@ class App extends React.Component {
             reps: this.state.reps,
             weight: this.state.weight
         });
+        this.setState({ isAdded: true });
         //reset local state 
         this.clearAll();
     }
@@ -162,6 +185,9 @@ class App extends React.Component {
                             <Input update={this.updateReps} type="number" label="repetitions" />
                             <Input update={this.updateWeight} type="number" label="weight" />
                             <StyledSubmitButton type="submit" value="add" />
+                            {this.state.isAdded && (
+                                <ValidationMessage />
+                            )}
                         </Form>
                     </StyledSidebar>
                     <StyledContentContainer>
