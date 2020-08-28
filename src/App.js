@@ -182,8 +182,8 @@ class App extends React.Component {
                         <Form updateExercises={this.updateExercises}>
                             <SelectExercises exercises={this.state.exercises} update={this.updateExerciseId} />
                             <SelectSet update={this.updateSet} />
-                            <Input update={this.updateReps} type="number" label="repetitions" />
-                            <Input update={this.updateWeight} type="number" label="weight" />
+                            <Input id="reps" update={this.updateReps} type="number" label="repetitions" />
+                            <Input id="weight" update={this.updateWeight} type="number" label="weight" />
                             <StyledSubmitButton type="submit" value="add" />
                             {this.state.isAdded && (
                                 <ValidationMessage />
@@ -199,4 +199,4 @@ class App extends React.Component {
     }
 }
 
-export { App };
+export default App;
