@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'https://cdn.skypack.dev/react@^16.13.1';
-import styled from 'https://cdn.skypack.dev/styled-components@^5.1.1';
+import React, { useState, useEffect } from "react";
+import styled from 'styled-components';
 
 //Import style input 
 import { StyledLabel, StyledInput, StyledInputGroup } from './UI/Input.js';

@@ -4,7 +4,8 @@
   "description": "Techno: HTML/CSS/JS/jQuery/BackboneJS/Firebase",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,16 @@
   "homepage": "https://github.com/younessbennaj/workout-journal#readme",
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",
-    "gulp": "^4.0.2"
+    "babel-loader": "^8.1.0",
+    "gulp": "^4.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@babel/core": "^7.10.5",
-    "gulp-babel": "^8.0.0",
-    "react-table": "^7.5.0"
+    "gulp-babel": "^8.0.0"
   }
 }

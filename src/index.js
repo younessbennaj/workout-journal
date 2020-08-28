@@ -1,7 +1,7 @@
 
 
-import * as React from 'https://cdn.skypack.dev/react@^16.13.1';
-import * as ReactDOM from 'https://cdn.skypack.dev/react-dom@^16.13.1';
+import * as React from "react";
+import * as ReactDOM from 'react-dom';
 import { App } from './App.js';
 
 ReactDOM.render(
