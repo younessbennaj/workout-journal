@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "cypress": "node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "@babel/preset-react": "^7.10.4",
     "@testing-library/react": "^10.4.9",
     "babel-loader": "^8.1.0",
+    "cypress": "^5.0.0",
     "gulp": "^4.0.2",
     "jest": "^26.4.2",
     "react": "^16.13.1",
