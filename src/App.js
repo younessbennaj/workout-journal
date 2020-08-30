@@ -184,7 +184,7 @@ class App extends React.Component {
                             <SelectSet update={this.updateSet} />
                             <Input id="reps" update={this.updateReps} type="number" label="repetitions" />
                             <Input id="weight" update={this.updateWeight} type="number" label="weight" />
-                            <StyledSubmitButton type="submit" value="add" />
+                            <StyledSubmitButton type="submit" value="add" data-cy="submit" />
                             {this.state.isAdded && (
                                 <ValidationMessage />
                             )}
