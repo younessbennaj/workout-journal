@@ -74,14 +74,18 @@ const StyledExerciseDetails = styled.td`
 const SetDetails = ({ weight, reps }) => {
     return (
         <StyledSetDetails>
-            <tr>
-                <td>weight:</td>
-                <td>{weight}</td>
-            </tr>
-            <tr>
-                <td>reps:</td>
-                <td>{reps}</td>
-            </tr>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>weight:</td>
+                        <td>{weight}</td>
+                    </tr>
+                    <tr>
+                        <td>reps:</td>
+                        <td>{reps}</td>
+                    </tr>
+                </tbody>
+            </table>
         </StyledSetDetails>
     )
 }

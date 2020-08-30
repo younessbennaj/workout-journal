@@ -16,7 +16,7 @@ const Form = ({ children, updateExercises }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form aria-label="form" onSubmit={handleSubmit}>
             {children}
         </form>
     )

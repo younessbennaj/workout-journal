@@ -12,7 +12,7 @@ const SelectExercises = ({ exercises, update }) => {
 
     return (
         <StyledInputGroup>
-            <StyledLabel>exercise</StyledLabel>
+            <StyledLabel htmlFor="exercice">exercise</StyledLabel>
             <StyledSelect onChange={handleChange} name="exercice" id="exercice">
                 {exercises.map(exercise => {
                     return <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
