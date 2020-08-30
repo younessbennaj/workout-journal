@@ -11,7 +11,7 @@ const SelectSet = ({ update }) => {
 
     return (
         <StyledInputGroup>
-            <StyledLabel>Set</StyledLabel>
+            <StyledLabel htmlFor="sets">Set</StyledLabel>
             <StyledSelect onChange={handleChange} name="sets" id="sets">
                 <option value="1">1</option>
                 <option value="2">2</option>
