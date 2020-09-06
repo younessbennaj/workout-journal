@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
+import axios from "axios";
 
 //Components
 import { Form } from './Form.js';
@@ -124,6 +125,16 @@ class App extends React.Component {
         this.updateExerciseId = this.updateExerciseId.bind(this);
         this.updateSet = this.updateSet.bind(this);
         this.updateExercises = this.updateExercises.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get('/user')
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     findExercice(id) {
