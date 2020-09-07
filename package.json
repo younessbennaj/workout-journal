@@ -4,6 +4,7 @@
   "description": "Techno: HTML/CSS/JS/jQuery/BackboneJS/Firebase",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --open",
     "test": "jest",
     "build": "webpack",
     "cypress": "node_modules/.bin/cypress open"
@@ -34,7 +35,8 @@
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@babel/core": "^7.10.5",

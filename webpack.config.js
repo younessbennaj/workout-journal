@@ -3,13 +3,17 @@ const path = require('path');
 module.exports = {
     mode: "development",
     watch: true,
-    //Entry point where webpack start to build dependencies graph 
+    //Entry point where webpack start to build dependency graph
     entry: './src/index.js',
     //Where webpack put the compiled code 
     output: {
         //We need the absolute path
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
+    },
+    devtool: 'inline-source-map',
+    devServer: {
+        contentBase: './dist',
     },
     module: {
         //rules to preprocess files before compilation
