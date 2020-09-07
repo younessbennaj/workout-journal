@@ -4,7 +4,7 @@ import App from './App.js';
 
 //MSWJS
 const { worker } = require('./mocks/brower');
-worker.start()
+worker.start();
 
 ReactDOM.render(
     <App />,
