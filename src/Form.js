@@ -30,22 +30,12 @@ const ValidationMessage = () => {
 }
 
 const Form = ({ children, updateExercises }) => {
-    // // Server State / Server Cache
-    // const [exercises, setExercises] = useState([]);
-
     //UI State/Client State
     const [exerciseId, setExerciseId] = useState('');
     const [reps, setReps] = useState(0);
     const [weight, setWeight] = useState(0);
     const [currentSet, setCurrentSet] = useState(1);
     const [isAdded, setIsAdded] = useState(false);
-
-    // useEffect(() => {
-    //     axios.get('/exercises')
-    //         .then(response => {
-    //             setExercises(response.data)
-    //         })
-    // }, []);
 
     function updateExerciseId(id) {
         setExerciseId(id)
