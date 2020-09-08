@@ -128,15 +128,25 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/records')
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axios.get('/records')
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
 
-        axios.get('/record/2d6c4a0b-73a1-48a4-aabe-ffdcb09e8fe1')
+        // axios.get('/record/2d6c4a0b-73a1-48a4-aabe-ffdcb09e8fe1')
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+
+        axios.get('/exercises')
+            .then(data => {
+                console.log(data);
+            })
+
+        axios.get('/exercise/8d9377e5-fed7-418f-84f6-23fd7f29bc17')
             .then(data => {
                 console.log(data);
             })
