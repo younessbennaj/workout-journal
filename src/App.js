@@ -5,9 +5,9 @@ import axios from "axios";
 //Components
 import { Form } from './Form.js';
 import { Table } from './Table.js';
-import { Input } from './Input.js';
-import { SelectExercises } from './SelectExercise.js';
-import { SelectSet } from './SelectSet.js';
+// import { Input } from './Input.js';
+// import { SelectExercises } from './SelectExercise.js';
+// import { SelectSet } from './SelectSet.js';
 
 //Layout Components 
 import {
@@ -86,24 +86,6 @@ const exercisesModel = [
     },
 ]
 
-//Validation Form Message Component 
-
-const StyledValidationMessage = styled.div`
-    border: 1px solid green;
-    background-color: lightgreen;
-    padding: 0.5em;
-    border-radius: 3px;
-    margin: 0.5em 0;
-`
-
-const ValidationMessage = () => {
-    return (
-        <StyledValidationMessage>
-            <p>Success</p>
-        </StyledValidationMessage>
-    )
-}
-
 //Parent App Component
 
 class App extends React.Component {
@@ -112,19 +94,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             exercises: exercisesModel,
-            exerciseId: '',
-            reps: 0,
-            weight: 0,
-            currentSet: 1,
-            //mock success on POST data to API
-            isAdded: false,
         }
-        //Bind the keyword this to the component instance object inside the event handlers 
-        this.updateReps = this.updateReps.bind(this);
-        this.updateWeight = this.updateWeight.bind(this);
-        this.updateExerciseId = this.updateExerciseId.bind(this);
-        this.updateSet = this.updateSet.bind(this);
-        this.updateExercises = this.updateExercises.bind(this);
     }
 
     componentDidMount() {
@@ -141,62 +111,17 @@ class App extends React.Component {
         //         console.log(data);
         //     })
 
-        axios.get('/exercises')
-            .then(data => {
-                console.log(data);
-            })
+        // axios.get('/exercises')
+        //     .then(data => {
+        //         console.log(data);
+        //     })
 
-        axios.get('/exercise/8d9377e5-fed7-418f-84f6-23fd7f29bc17')
-            .then(data => {
-                console.log(data);
-            })
+        // axios.get('/exercise/8d9377e5-fed7-418f-84f6-23fd7f29bc17')
+        //     .then(data => {
+        //         console.log(data);
+        //     })
     }
 
-    findExercice(id) {
-        //Given an id, find the corresponding exercise in the data model
-        return exercisesModel.find(exercise => exercise.id === id);
-    }
-
-    updateExerciseId(id) {
-        this.setState({ exerciseId: id });
-    }
-
-    updateSet(currentSet) {
-        this.setState({ currentSet });
-    }
-
-    updateReps(reps) {
-        reps = Number.parseInt(reps);
-        this.setState({ reps });
-    }
-
-    updateWeight(weight) {
-        weight = Number.parseInt(weight);
-        this.setState({ weight });
-    }
-
-    clearAll() {
-        this.setState({
-            exerciseId: '',
-            weight: 0,
-            reps: 0,
-            currentSet: 1
-        });
-    }
-
-    updateExercises() {
-        console.log(this.findExercice(this.state.exerciseId));
-        //post a set => Post on api/set
-        console.log({
-            id: this.state.exerciseId,
-            set: this.state.currentSet,
-            reps: this.state.reps,
-            weight: this.state.weight
-        });
-        this.setState({ isAdded: true });
-        //reset local state 
-        this.clearAll();
-    }
 
     render() {
 
@@ -206,14 +131,14 @@ class App extends React.Component {
                 <StyledContainer>
                     <StyledSidebar>
                         <Form updateExercises={this.updateExercises}>
-                            <SelectExercises exercises={this.state.exercises} update={this.updateExerciseId} />
+                            {/* <SelectExercises exercises={this.state.exercises} update={this.updateExerciseId} />
                             <SelectSet update={this.updateSet} />
                             <Input id="reps" update={this.updateReps} type="number" label="repetitions" />
                             <Input id="weight" update={this.updateWeight} type="number" label="weight" />
                             <StyledSubmitButton type="submit" value="add" data-cy="submit" />
                             {this.state.isAdded && (
                                 <ValidationMessage />
-                            )}
+                            )} */}
                         </Form>
                     </StyledSidebar>
                     <StyledContentContainer>
