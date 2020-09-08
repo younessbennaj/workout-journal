@@ -9,26 +9,20 @@ export const records = [
                     {
                         "id": "48c9f4f0-258c-42a3-9aae-cd99e8c124a1",
                         "index": 1,
-                        "reps": {
-                            "count": 10,
-                            "weight": 70
-                        }
+                        "reps": 10,
+                        "weight": 70
                     },
                     {
                         "id": "06f3172d-fa0d-4883-9d85-a635ccc02632",
                         "index": 2,
-                        "reps": {
-                            "count": 10,
-                            "weight": 70
-                        }
+                        "reps": 10,
+                        "weight": 70
                     },
                     {
                         "id": "07b4cd6a-3b5e-4a60-93f0-1cfd9eea5ea5",
                         "index": 3,
-                        "reps": {
-                            "count": 10,
-                            "weight": 70
-                        }
+                        "reps": 10,
+                        "weight": 70
                     }
                 ]
             }

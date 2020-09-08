@@ -17,84 +17,11 @@ import {
     StyledSidebar
 } from './layout/index.js';
 
-//Import input style componenets 
-import { StyledSubmitButton } from './UI/Input.js';
-
-// STYLE UTILS
-import { sm } from './style/mixins.js'
-
-// DATA MOCK UPS
-
-function generateFakeId() {
-    return (1000000 + Math.floor(Math.random() * (10000000 - 1000000))).toString();
-}
-
-const setsModel = [
-    { reps: 8, weight: 90 },
-    { reps: 10, weight: 80 },
-    { reps: 12, weight: 70 }
-]
-
-const exercisesModel = [
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'bench'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'pull-ups'
-    },
-    {
-        id: generateFakeId(),
-        sets: setsModel,
-        description: '3 sets, 8-12 reps',
-        name: 'squats'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'side raise'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'dumbell press'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'triceps pushdown'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'dumbbell curl'
-    },
-    {
-        id: generateFakeId(),
-        description: '3 sets, 8-12 reps',
-        sets: setsModel,
-        name: 'hanging knee raise'
-    },
-]
-
 //Parent App Component
-
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            exercises: exercisesModel,
-        }
     }
 
     componentDidMount() {
@@ -130,19 +57,10 @@ class App extends React.Component {
                 <StyledNavbar />
                 <StyledContainer>
                     <StyledSidebar>
-                        <Form updateExercises={this.updateExercises}>
-                            {/* <SelectExercises exercises={this.state.exercises} update={this.updateExerciseId} />
-                            <SelectSet update={this.updateSet} />
-                            <Input id="reps" update={this.updateReps} type="number" label="repetitions" />
-                            <Input id="weight" update={this.updateWeight} type="number" label="weight" />
-                            <StyledSubmitButton type="submit" value="add" data-cy="submit" />
-                            {this.state.isAdded && (
-                                <ValidationMessage />
-                            )} */}
-                        </Form>
+                        <Form />
                     </StyledSidebar>
                     <StyledContentContainer>
-                        <Table exercises={exercisesModel} />
+                        <Table />
                     </ StyledContentContainer>
                 </StyledContainer>
             </>

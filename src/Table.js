@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
+import axios from 'axios';
 
 // STYLE UTILS
 import { sm } from './style/mixins.js';
@@ -72,6 +73,7 @@ const StyledExerciseDetails = styled.td`
 //Details infomation about the set (weight and repetitions by set)
 
 const SetDetails = ({ weight, reps }) => {
+
     return (
         <StyledSetDetails>
             <table>
@@ -92,15 +94,15 @@ const SetDetails = ({ weight, reps }) => {
 
 //Row to represent an exercise in the table
 
-const ExerciseRow = ({ exercise: { name, sets, description } }) => {
+const ExerciseRow = ({ exercise }) => {
     return (
         <tr>
             <StyledExerciseDetails>
-                <p>{name}</p>
-                <p>{description}</p>
+                <p>Exercise name</p>
+                <p>description here ...</p>
             </StyledExerciseDetails>
-            {sets.map(set => {
-                return <SetDetails key={set.weight} weight={set.weight} reps={set.reps} />
+            {exercise.sets.map(set => {
+                return <SetDetails key={set.id} weight={set.weight} reps={set.reps} />
             })}
         </tr>
     )
@@ -109,6 +111,16 @@ const ExerciseRow = ({ exercise: { name, sets, description } }) => {
 //Table that display our records by exercise (by sets)
 
 const Table = ({ exercises }) => {
+
+    const [record, setRecord] = useState();
+
+    useEffect(() => {
+        axios.get('/record/2d6c4a0b-73a1-48a4-aabe-ffdcb09e8fe1')
+            .then(response => {
+                setRecord(response.data);
+            })
+    }, []);
+
     return (
         <StyledTable>
             <thead>
@@ -120,8 +132,8 @@ const Table = ({ exercises }) => {
                 </tr>
             </thead>
             <tbody>
-                {exercises.map(exercise => {
-                    return <ExerciseRow key={exercise.id} exercise={exercise} />;
+                {record && record.exercises.map(exercise => {
+                    return <ExerciseRow key={exercise.id} exercise={exercise} />
                 })}
             </tbody>
         </StyledTable>
