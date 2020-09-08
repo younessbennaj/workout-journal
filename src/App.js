@@ -128,13 +128,18 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/user')
+        axios.get('/records')
             .then(function (response) {
-                console.log(response);
+                console.log(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
+
+        axios.get('/record/2d6c4a0b-73a1-48a4-aabe-ffdcb09e8fe1')
+            .then(data => {
+                console.log(data);
+            })
     }
 
     findExercice(id) {
